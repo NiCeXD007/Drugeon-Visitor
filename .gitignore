@@ -1,4 +1,9 @@
 /Library
-/Log
+/Logs
 /Temp
 /UserSettings
+/obj
+/.idea
+/.git
+*csproj
+*.sln
