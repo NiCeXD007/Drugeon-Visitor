@@ -9,7 +9,7 @@ public class KillBox : MonoBehaviour
     {
         GameObject root = other.gameObject.transform.root.gameObject;
         
-        if (root.TryGetComponent(out Die die))
+        if (root.TryGetComponent(out CharacterState die))
         {
             if (die.KillFlag == false)
             {

@@ -6,8 +6,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Die : MonoBehaviour
+public class CharacterState : MonoBehaviour
 {
+    public float VelocityLength = 0;
+    public float DistanceToTarget = 0;
     [Button("Kill", ButtonSizes.Large)]
     public void Kill()
     {
@@ -33,14 +35,22 @@ public class Die : MonoBehaviour
 
     private void Update()
     {
-        float speed = navMeshAgent.speed;
-        if (speed > 0.1f)
+        VelocityLength = navMeshAgent.velocity.magnitude;
+        DistanceToTarget = (this.transform.position - enemyMovement.Target).magnitude;
+        if (DistanceToTarget > 2f)
         {
-            animator.SetInteger("State", 1);
+            if (VelocityLength > 0.5f)
+            {
+                animator.SetInteger("State", 1);
+            }
+            else
+            {
+                animator.SetInteger("State", 0);
+            }
         }
         else
         {
-            animator.SetInteger("State", 0);
+            animator.SetInteger("State", 2);
         }
     }
 
